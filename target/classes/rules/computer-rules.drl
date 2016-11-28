@@ -1,0 +1,65 @@
+//created on: 17-nov-2016
+package computer
+
+//list any import classes here.
+import com.fisi.droolsweb.to.*
+
+//declare any global variables here
+
+dialect "java"
+
+rule "Enfermedad1"
+	when
+		enfermedadviral : EnfermedadViral( fiebre== true, tos==true, dolorgarganta==false, escalofrio==false )&& antecedentes: Antecedentes(presentoinfarto==true, esfumador==false) && persona: Persona(  ) 
+	then
+		persona.setProblema("Usted es diagnosticado con Influenza");
+end
+rule "Enfermedad2"
+	when
+		enfermedadviral : EnfermedadViral( fiebre== true, tos==true)&& antecedentes: Antecedentes(presentoinfarto==true, esfumador==false) && persona: Persona(  ) 
+	then
+		persona.setProblema("Usted es diagnosticado con Gripe");
+end
+
+rule "Enfermedad3"
+	when
+		enfermedadviral : EnfermedadViral( fiebre== true, tos==true)&& antecedentes: Antecedentes(presentoinfarto==true, esfumador==true) && persona: Persona(  ) 
+	then
+		persona.setProblema("Usted es diagnosticado con Neumonia");
+end
+
+rule "Enfermedad4"
+	when
+		enfermedadviral : EnfermedadViral( fiebre== false, tos==true)&& antecedentes: Antecedentes(presentoinfarto==true, esfumador==true) && persona: Persona(  ) 
+	then
+		persona.setProblema("Usted es diagnosticado con Bronquitis");
+end
+
+rule "Enfermedad5"
+	when
+		enfermedadviral : EnfermedadViral( fiebre== false, tos==false)&& antecedentes: Antecedentes(presentoinfarto==true, esfumador==true) && persona: Persona(  ) 
+	then
+		persona.setProblema("Usted es diagnosticado con Tuberculosis");
+end
+
+rule "Enfermedad6"
+	when
+		enfermedadviral : EnfermedadViral( tos==false)&& antecedentes: Antecedentes(presentoinfarto==true) && persona: Persona(  ) 
+	then
+		persona.setProblema("Usted es diagnosticado con Asma");
+end
+
+rule "Enfermedad7"
+	when
+		enfermedadviral : EnfermedadViral( tos==false)&& antecedentes: Antecedentes(presentoinfarto==false) && persona: Persona(  ) 
+	then
+		persona.setProblema("Usted es diagnosticado con Hepatitis");
+end
+
+
+rule "Enfermedad8"
+	when
+		enfermedadviral : EnfermedadViral( tos==true)&& antecedentes: Antecedentes(presentoinfarto==false) && persona: Persona(  ) 
+	then
+		persona.setProblema("Usted es diagnosticado con Anemia");
+end
